@@ -6,13 +6,22 @@
 //
 
 import UIKit
+import YoutubePlayer_in_WKWebView
 
 class VideoViewController: UIViewController {
-
+    
+let videosArray = [Videos(name: "Arm Training 5 min", video: "oMRpFK5QjBY"),
+                   Videos(name: "Arm Training 10 min", video: ""),
+                   Videos(name: "Arm Training 15 min", video: "")]
+    
+    
+    @IBOutlet weak var videoPlayer: WKYTPlayerView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        videoPlayer.load(withVideoId: "e_Z2tX5tkeI")
+       
     }
     
 

@@ -7,13 +7,63 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
+
+class LoginViewController: UIViewController  {
+    
+    @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var emailTextfield: UITextField!
+    @IBOutlet weak var passwordTextfield: UITextField!
+    
+    var isValidLogin = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        loginButton.isEnabled = false
+        emailTextfield.delegate = self
+        passwordTextfield.delegate = self
+        
     }
+    
+    @IBAction func loginPressed(){
+        if(isValidLogin){
+            performSegue(withIdentifier: "loginToTabview", sender: self)
+        } else {
+            let alert = UIAlertController(title: "Login fehlgeschlagen", message: "Bitte versuche es erneut", preferredStyle: .alert)
+            
+            alert.addAction(UIAlertAction(title: "Erneut versuchen", style: .cancel, handler: {_ in
+                self.emailTextfield.text = ""
+                self.passwordTextfield.text = ""
+                self.loginButton.isEnabled = false
+                
+                alert.dismiss(animated: true)
+            }))
+            
+            present(alert, animated:  true)
+        }
+    }
+    
+    @IBAction func signupPressed(){
+        performSegue(withIdentifier: "loginToSignupSegue", sender: self)
+    }
+}
 
-
+extension LoginViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return true
+    }
+    
+    @IBAction func onTextChanged() {
+        if(emailTextfield.text?.count ?? 0 > 0 && passwordTextfield.text?.count ?? 0 > 0)  {
+            loginButton.isEnabled = true
+            if(emailTextfield.text == "stefan@gmx.com" && passwordTextfield.text == "210667") {
+                isValidLogin = true
+            } else {
+                isValidLogin = false
+            }
+        }
+    }
+    
 }
 

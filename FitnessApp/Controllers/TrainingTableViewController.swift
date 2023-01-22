@@ -17,6 +17,9 @@ class TrainingTableViewController: UITableViewController {
         Trainings(name: "Yoga Training", image: UIImage(named: "yogatraining")!),
         Trainings(name: "BOP Training", image: UIImage(named: "boptraining")!)]
     
+    @IBOutlet weak var barButton: UIBarButtonItem!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

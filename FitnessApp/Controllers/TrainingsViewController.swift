@@ -21,7 +21,16 @@ class TrainingsViewController: UIViewController {
      
     }
     
-
+    @IBAction func fuenfminpressed(){
+        performSegue(withIdentifier: "trainingsviewToVideoViewSegue", sender: self)
+    }
     
-
+    @IBAction func zehnminpressed(){
+        performSegue(withIdentifier: "trainingsviewToVideoViewSegue", sender: self)
+    }
+    
+    @IBAction func fuenfzehnminpressed(){
+        performSegue(withIdentifier: "trainingsviewToVideoViewSegue", sender: self)
+    }
+    
 }

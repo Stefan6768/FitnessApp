@@ -8,22 +8,47 @@
 import UIKit
 
 class SignUpViewController: UIViewController {
+    
+    @IBOutlet weak var emailTextfield: UITextField!
+    @IBOutlet weak var passwordTextfield: UITextField!
+    @IBOutlet weak var speicherButton: UIButton!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        speicherButton.isEnabled = true
+        emailTextfield.delegate = self
+        passwordTextfield.delegate = self
 
-        // Do any additional setup after loading the view.
+      
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func speicherButtonPressed(){
+        
     }
-    */
 
+    @IBAction func guestloginPressed(){
+        performSegue(withIdentifier: "guestloginToStartSegue", sender: self)
+    }
+    
+}
+
+extension SignUpViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return true
+    }
+    
+    @IBAction func onTextChanged() {
+  //      if(emailTextfield.text?.count ?? 0 > 0 && passwordTextfield.text?.count ?? 0 > 0)  {
+   //         loginButton.isEnabled = true
+    //        if(emailTextfield.text == "stefan@gmx.com" && passwordTextfield.text == "210667") {
+    //            isValidLogin = true
+    //        } else {
+    //            isValidLogin = false
+    //        }
+    //    }
+    }
+    
 }
