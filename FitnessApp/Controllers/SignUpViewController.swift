@@ -9,16 +9,16 @@ import UIKit
 
 class SignUpViewController: UIViewController {
     
-    @IBOutlet weak var emailTextfield: UITextField!
-    @IBOutlet weak var passwordTextfield: UITextField!
-    @IBOutlet weak var speicherButton: UIButton!
+  //  @IBOutlet weak var emailTextfield: UITextField!
+   // @IBOutlet weak var passwordTextfield: UITextField!
+  //  @IBOutlet weak var speicherButton: UIButton!
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        speicherButton.isEnabled = true
-        emailTextfield.delegate = self
-        passwordTextfield.delegate = self
+       // speicherButton.isEnabled = true
+       // emailTextfield.delegate = self
+       // passwordTextfield.delegate = self
 
       
     }

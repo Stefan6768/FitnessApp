@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		012C165929759E9E00C6F2BF /* Videos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012C165829759E9E00C6F2BF /* Videos.swift */; };
+		01699F59297D407E00112205 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01699F58297D407E00112205 /* User.swift */; };
 		017FF742297CAE0300D47809 /* PersSpeicherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017FF741297CAE0300D47809 /* PersSpeicherViewController.swift */; };
 		01AA3A14296C9EED004B2DE4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01AA3A13296C9EED004B2DE4 /* AppDelegate.swift */; };
 		01AA3A16296C9EED004B2DE4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01AA3A15296C9EED004B2DE4 /* SceneDelegate.swift */; };
@@ -31,6 +32,7 @@
 
 /* Begin PBXFileReference section */
 		012C165829759E9E00C6F2BF /* Videos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Videos.swift; sourceTree = "<group>"; };
+		01699F58297D407E00112205 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		017FF741297CAE0300D47809 /* PersSpeicherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersSpeicherViewController.swift; sourceTree = "<group>"; };
 		01AA3A10296C9EED004B2DE4 /* FitnessApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FitnessApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		01AA3A13296C9EED004B2DE4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 			children = (
 				01AA3A2C296C9F6A004B2DE4 /* Trainings.swift */,
 				012C165829759E9E00C6F2BF /* Videos.swift */,
+				01699F58297D407E00112205 /* User.swift */,
 			);
 			path = Modelle;
 			sourceTree = "<group>";
@@ -268,6 +271,7 @@
 				01AA3A37296CAEA5004B2DE4 /* SchritteViewController.swift in Sources */,
 				01AA3A1E296C9EED004B2DE4 /* FitnessApp.xcdatamodeld in Sources */,
 				01AA3A3D296CBB06004B2DE4 /* TrainingTableViewController.swift in Sources */,
+				01699F59297D407E00112205 /* User.swift in Sources */,
 				01AA3A18296C9EED004B2DE4 /* LoginViewController.swift in Sources */,
 				01AA3A39296CB073004B2DE4 /* KalorienViewController.swift in Sources */,
 				01AA3A2D296C9F6A004B2DE4 /* Trainings.swift in Sources */,

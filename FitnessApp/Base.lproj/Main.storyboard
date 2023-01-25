@@ -168,7 +168,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" subtitle="" cornerStyle="capsule">
                                     <attributedString key="attributedTitle">
-                                        <fragment content="speichern">
+                                        <fragment content="Sign Up">
                                             <attributes>
                                                 <color key="NSColor" red="0.00096649484540000004" green="0.00096649484540000004" blue="0.00096649484540000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <font key="NSFont" size="25" name="SFPro-Regular"/>
@@ -178,9 +178,6 @@
                                     </attributedString>
                                     <color key="baseBackgroundColor" red="0.7019608021" green="0.78039217000000005" blue="0.94117647410000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </buttonConfiguration>
-                                <connections>
-                                    <action selector="signupPressed" destination="uD2-tk-RDm" eventType="touchUpInside" id="cMe-2I-ky0"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="urJ-mB-CT6">
                                 <rect key="frame" x="40" y="718" width="313" height="50"/>
@@ -238,9 +235,6 @@
                     </view>
                     <navigationItem key="navigationItem" title="My Workout Sign Up" style="editor" id="KxN-qG-63o"/>
                     <connections>
-                        <outlet property="email" destination="Ut1-o6-20f" id="ujx-9Y-0fF"/>
-                        <outlet property="password" destination="fAx-fZ-KZD" id="HgM-Tn-laa"/>
-                        <outlet property="signupButton" destination="cks-CM-ReR" id="6KM-tJ-m60"/>
                         <segue destination="33K-Tk-WeT" kind="presentation" identifier="signupToTabView" modalPresentationStyle="fullScreen" id="LJa-Eb-gwJ"/>
                         <segue destination="4ud-vl-vsL" kind="presentation" identifier="guestloginToStartSegue" modalPresentationStyle="fullScreen" id="yGs-6K-rIi"/>
                     </connections>
@@ -609,18 +603,18 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Title" id="Nt6-Z2-zQu">
-                        <barButtonItem key="leftBarButtonItem" width="1" springLoaded="YES" style="plain" id="BxN-NX-Ydg">
+                        <barButtonItem key="leftBarButtonItem" width="1" style="plain" id="BxN-NX-Ydg">
                             <imageReference key="image" image="chevron.backward" catalog="system" symbolScale="large"/>
                             <color key="tintColor" systemColor="systemBlueColor"/>
                             <connections>
-                                <segue destination="4ud-vl-vsL" kind="presentation" modalPresentationStyle="fullScreen" id="xg4-Ty-hVL"/>
+                                <action selector="barPressed" destination="gju-hs-ZB4" id="STk-of-TLW"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="barButton" destination="BxN-NX-Ydg" id="1HN-J8-UTn"/>
                         <segue destination="LD3-rD-G7r" kind="show" identifier="showDetailTraining" id="pXN-ij-1Id"/>
+                        <segue destination="4ud-vl-vsL" kind="presentation" identifier="tableViewToStartSegue" modalPresentationStyle="fullScreen" id="Mb2-VK-3K9"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="29v-FV-HZS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -632,7 +626,7 @@
             <objects>
                 <viewController id="LD3-rD-G7r" customClass="TrainingsViewController" customModule="FitnessApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zNj-OU-GI4">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Welle" translatesAutoresizingMaskIntoConstraints="NO" id="dOv-h8-CgV">
@@ -640,7 +634,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PFC-Ba-Scv">
-                                <rect key="frame" x="40" y="563" width="313" height="50"/>
+                                <rect key="frame" x="40" y="549" width="313" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="s7U-0S-Vfs"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="yHU-sO-y9A"/>
@@ -664,7 +658,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gee-ur-lHB">
-                                <rect key="frame" x="40" y="463" width="313" height="50"/>
+                                <rect key="frame" x="40" y="449" width="313" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="OWf-GC-arN"/>
                                     <constraint firstAttribute="height" constant="50" id="nXt-SY-wxP"/>
@@ -689,14 +683,14 @@
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iKV-ga-6yz">
-                                <rect key="frame" x="20" y="89" width="353" height="253"/>
+                                <rect key="frame" x="20" y="133" width="353" height="253"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="253" id="Zkj-NV-Wpc"/>
                                     <constraint firstAttribute="height" constant="253" id="Ztu-hB-v3L"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EFO-Fc-bJ6">
-                                <rect key="frame" x="40" y="663" width="313" height="50"/>
+                                <rect key="frame" x="40" y="649" width="313" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="MRz-eh-qdM"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="cit-HI-xjN"/>
@@ -765,7 +759,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="7sW-fu-2Ch"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -828,14 +822,14 @@
             <objects>
                 <viewController id="o1X-60-87o" customClass="VideoViewController" customModule="FitnessApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="aLS-ZL-v5D">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Welle" translatesAutoresizingMaskIntoConstraints="NO" id="Dkx-a0-0vx">
-                                <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qaq-2p-kzl" customClass="WKYTPlayerView">
-                                <rect key="frame" x="16" y="59" width="361" height="250"/>
+                                <rect key="frame" x="16" y="103" width="361" height="250"/>
                                 <color key="backgroundColor" systemColor="labelColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="250" id="9L7-s0-jy5"/>
@@ -1022,7 +1016,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="xg4-Ty-hVL"/>
+        <segue reference="Mb2-VK-3K9"/>
         <segue reference="LJa-Eb-gwJ"/>
         <segue reference="o2t-ax-q1X"/>
     </inferredMetricsTieBreakers>

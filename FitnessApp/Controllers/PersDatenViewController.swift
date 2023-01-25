@@ -5,12 +5,7 @@
 //  Created by Stefan Schreiber on 09.01.23.
 //
 
-struct User {
-    var geschlecht: String
-    var groesse: Int
-    var gewicht: Int
-    var alter: String
-}
+
 
 
 

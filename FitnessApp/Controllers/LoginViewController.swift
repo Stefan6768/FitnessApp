@@ -24,6 +24,10 @@ class LoginViewController: UIViewController  {
         
     }
     
+    // create Tool Bar
+    
+ 
+    
     @IBAction func loginPressed(){
         if(isValidLogin){
             performSegue(withIdentifier: "loginToTabview", sender: self)
@@ -43,7 +47,7 @@ class LoginViewController: UIViewController  {
     }
     
     @IBAction func signupPressed(){
-        performSegue(withIdentifier: "loginToSignupSegue", sender: self)
+        performSegue(withIdentifier: "loginToSignupSegue", sender: nil)
     }
 }
 
