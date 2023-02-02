@@ -14,7 +14,9 @@ import UIKit
 
 class PersDatenViewController: UIViewController {
     
+    var users: [User]?
     
+    @IBOutlet weak var userView: UIViewController!
     
     @IBOutlet weak var geschlechtField: UITextField!
     @IBOutlet weak var groesseField: UITextField!
@@ -25,6 +27,8 @@ class PersDatenViewController: UIViewController {
     let alterPicker = UIDatePicker()
     
     @IBOutlet weak var speicherButton: UIButton!
+    
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,6 +53,23 @@ class PersDatenViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyBoardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
+        func fetchUsers(){
+            do {
+                self.users = try context.fetch(User.fetchRequest())
+                
+                DispatchQueue.main.async {
+                    self.userView.reloadInputViews()
+                    fetchUsers()
+                }
+            } catch {
+                print("Wir konnten den User nicht fetchen")
+            }
+        }
+        
+        func speicherPressed() {
+            performSegue(withIdentifier: "persdatenToPersSpeicherViewControllerSegue", sender: nil)
+            
+        }
     }
     // keyboard overlaps view
     
@@ -119,7 +140,7 @@ class PersDatenViewController: UIViewController {
         let gewicht = Int(gewichtField.text!) ?? 0
         let alter = alterField.text ?? ""
         
-        let user = User(geschlecht: geschlecht, groesse: groesse, gewicht: gewicht, alter: alter)
+        let user = User().self
         performSegue(withIdentifier: "persdatenToPersSpeicherViewControllerSegue", sender: user)
     }
 }
