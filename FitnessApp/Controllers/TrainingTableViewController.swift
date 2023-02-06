@@ -59,9 +59,15 @@ class TrainingTableViewController: UITableViewController {
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let destinationViewController = segue.destination as! StartViewController
-        //let training = sender as! Trainings
-        //destinationViewController.training = training
+        if segue.identifier == "tableViewToStartSegue"{
+            _ = segue.destination as! StartViewController
+        }
+        if segue.identifier == "showDetailTraining"{
+            let destinationViewController = segue.destination as! TrainingsViewController
+            let training = sender as! Trainings
+            destinationViewController.training = training
+        }
+
     }
 
 }

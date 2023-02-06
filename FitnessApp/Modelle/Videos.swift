@@ -12,4 +12,6 @@ import YoutubePlayer_in_WKWebView
 struct Videos {
     var name: String
     var video: String
+    var art: String
+    var min: Int
 }

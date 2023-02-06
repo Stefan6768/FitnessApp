@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Article {
+public struct Article: Codable{
     var author: String?
     var title: String?
     var description: String?

@@ -13,11 +13,29 @@ class NewsViewController: UIViewController {
     
     @IBOutlet weak var newsTableView: UITableView!
     var articles: [Article]?
+    var newsApiClient = NewsApiClient()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         newsTableView.dataSource = self
-        articles = mockData
+        newsTableView.delegate = self
+        fetchNews()
+        //articles = mockData
+    }
+    
+    func fetchNews() {
+        newsApiClient.fetchNews { news in
+            self.articles = news.articles
+            DispatchQueue.main.async {
+                self.newsTableView.reloadData()
+            }
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let destination = segue.destination as? ArticleViewController else {return}
+        guard let article = sender as? Article else {return}
+        destination.article = article
     }
 }
 
@@ -27,31 +45,32 @@ extension NewsViewController:  UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "newsCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "newsCell", for: indexPath) as! NewsTableViewCell
         guard let article = articles?[indexPath.row] else {return cell}
         
-        var content = cell.defaultContentConfiguration()
-        content.text = article.title ?? "Unbekannter Titel"
-        cell.contentConfiguration = content
+        cell.titleLabel.text = article.title ?? "Unbekannter Artikel"
+        cell.descriptionLabel.text = article.description ?? "Keine Beschreibung vorhanden"
+          guard let stringURL = article.urlToImage else {return cell}
+          guard let imageURL = URL(string: stringURL) else {return cell}
+        newsApiClient.fetchImageBy(URL: imageURL) { image in
+           DispatchQueue.main.async {
+               cell.newsImageView.image = image
+          }
         
-        return cell
-    }
-}
+         }
+        
+          return cell
+         }
+        
+        }
+        
+        // Mark: Table View Delegate
+    extension NewsViewController: UITableViewDelegate {
+           func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+               guard let selectArticle = articles?[indexPath.row] else {return}
+               tableView.deselectRow(at: indexPath, animated: true)
+               performSegue(withIdentifier: "showArticleSegue", sender: selectArticle)
+            }
+        }
+    
 
-private let mockData = [
-
- Article(
-author: "Steve Dent",
-title: "US labor regulator says Apple violated employee's rights with restrictive work rules",
-description: "The National Labor Relation Board (NLRB) has determined that Apple's rules around leaks violate worker's rights, Bloomberg has reported. Apple's actions and statements from executives \"tend to interfere with, restrain or coerce employees\" from exercising thei…",
-url: "https://www.engadget.com/us-labor-regulator-says-apple-violated-workers-rights-102524891.html",
-urlToImage: "https://s.yimg.com/os/creatr-uploaded-images/2022-01/e9dc2520-803a-11ec-9ff1-8e035bab6cb8"),
-
- Article(
-author: "Oliver O'Connell",
-title: "Alex Murdaugh trial – live: Legal scion’s five shocking words after wife and son’s murders revealed - The Independent",
-description: "Fourth day of testimony to get under way in Walterboro, Colleton County, South Carolina as Alex Murdaugh stands trial for murders of wife Maggie and son Paul",
-url: "https://www.independent.co.uk/news/world/americas/crime/alex-murdaugh-jail-witness-list-paul-maggie-trial-live-b2272563.html",
-urlToImage: "https://static.independent.co.uk/2023/01/30/15/SEI141952732.jpg?quality=75&width=1200&auto=webp"
-    )
- ]
