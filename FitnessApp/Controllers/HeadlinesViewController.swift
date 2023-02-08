@@ -10,7 +10,6 @@ import UIKit
 class HeadlinesViewController: UIViewController {
     
     @IBOutlet weak var headlinesTableView: UITableView!
-    
     var articles: [Article]?
     var newsApiClient = NewsApiClient()
     
@@ -18,7 +17,18 @@ class HeadlinesViewController: UIViewController {
         super.viewDidLoad()
         headlinesTableView.dataSource = self
         headlinesTableView.delegate = self
+        print("startingtofetchnes")
+        fetchNews()
         //articles = mockData
+    }
+    
+    func fetchNews() {
+        newsApiClient.fetchHeadlines { news in
+            self.articles = news.articles
+            DispatchQueue.main.async {
+                self.headlinesTableView.reloadData()
+            }
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -46,6 +56,8 @@ extension HeadlinesViewController:  UITableViewDataSource {
                 cell.newsImageView.image = image
             }
         }
+            
+        
         return cell
     }
 }

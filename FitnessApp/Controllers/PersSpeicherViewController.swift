@@ -17,7 +17,7 @@ class PersSpeicherViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        nameLabel.text =  "Hallo zu MyWorkout, dein Gewicht heute Morgen \(user.gewicht) kg"
+       //nameLabel.text =  "Hallo zu MyWorkout, dein Gewicht heute Morgen \(user.gewicht) kg"
       
     }
 }

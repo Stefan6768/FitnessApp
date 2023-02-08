@@ -15,7 +15,7 @@ class ArticleViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let stringURL = article?.url ?? "https://www.apple.com"
+        let stringURL = article?.url ?? "https://www.newsapi.org"
         guard let url = URL(string: stringURL) else {return}
         DispatchQueue.main.async {
             self.webView.load(URLRequest(url: url))

@@ -61,7 +61,7 @@ extension LoginViewController: UITextFieldDelegate {
     @IBAction func onTextChanged() {
         if(emailTextfield.text?.count ?? 0 > 0 && passwordTextfield.text?.count ?? 0 > 0)  {
             loginButton.isEnabled = true
-            if(emailTextfield.text == "stefan@gmx.com" && passwordTextfield.text == "210667") {
+            if(emailTextfield.text == "sabine@gmx.com" && passwordTextfield.text == "210667") {
                 isValidLogin = true
             } else {
                 isValidLogin = false

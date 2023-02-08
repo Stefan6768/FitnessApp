@@ -11,8 +11,11 @@ class NewsViewController: UIViewController {
     
     
     
+    
+    
     @IBOutlet weak var newsTableView: UITableView!
     var articles: [Article]?
+    var keyword: String = "Fussball"
     var newsApiClient = NewsApiClient()
 
     override func viewDidLoad() {
@@ -24,7 +27,7 @@ class NewsViewController: UIViewController {
     }
     
     func fetchNews() {
-        newsApiClient.fetchNews { news in
+        newsApiClient.fetchNews(keyword: "Basketball") { news in
             self.articles = news.articles
             DispatchQueue.main.async {
                 self.newsTableView.reloadData()
@@ -33,9 +36,20 @@ class NewsViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let destination = segue.destination as? ArticleViewController else {return}
-        guard let article = sender as? Article else {return}
-        destination.article = article
+        if(segue.identifier == "showSettingsSegue"){
+            guard let destination = segue.destination as? ArticleViewController else {return}
+            guard let article = sender as? Article else {return}
+            destination.article = article
+        } else {
+            guard let destination = segue.destination as? SettingsViewController else {return}
+            guard let keyword = sender as? String else {return}
+            destination.keyword = keyword
+            destination.delegate = self
+        }
+    }
+    
+    @IBAction func settingPressed() {
+        performSegue(withIdentifier: "showSettingsSegue", sender: keyword)
     }
 }
 
@@ -50,27 +64,33 @@ extension NewsViewController:  UITableViewDataSource {
         
         cell.titleLabel.text = article.title ?? "Unbekannter Artikel"
         cell.descriptionLabel.text = article.description ?? "Keine Beschreibung vorhanden"
-          guard let stringURL = article.urlToImage else {return cell}
-          guard let imageURL = URL(string: stringURL) else {return cell}
+        guard let stringURL = article.urlToImage else {return cell}
+        guard let imageURL = URL(string: stringURL) else {return cell}
         newsApiClient.fetchImageBy(URL: imageURL) { image in
-           DispatchQueue.main.async {
-               cell.newsImageView.image = image
-          }
-        
-         }
-        
-          return cell
-         }
-        
-        }
-        
-        // Mark: Table View Delegate
-    extension NewsViewController: UITableViewDelegate {
-           func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-               guard let selectArticle = articles?[indexPath.row] else {return}
-               tableView.deselectRow(at: indexPath, animated: true)
-               performSegue(withIdentifier: "showArticleSegue", sender: selectArticle)
+            DispatchQueue.main.async {
+                cell.newsImageView.image = image
             }
         }
+       
+        
+        return cell
+    }
     
+}
+    
+    // Mark: Table View Delegate
+    extension NewsViewController: UITableViewDelegate {
+        func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+            guard let selectArticle = articles?[indexPath.row] else {return}
+            tableView.deselectRow(at: indexPath, animated: true)
+            performSegue(withIdentifier: "showArticleSegue", sender: selectArticle)
+        }
+    }
+
+extension NewsViewController: ChangeKeywordDelegate {
+    func applyChanges(keyword: String) {
+        self.keyword = keyword
+        fetchNews()
+    }
+}
 

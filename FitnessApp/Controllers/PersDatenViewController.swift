@@ -130,15 +130,15 @@ class PersDatenViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destinationViewController = segue.destination as! PersSpeicherViewController
-        let user = sender as! User
-        destinationViewController.user = user
+        //let user = sender as! User
+        //destinationViewController.user = user
     }
     
     @IBAction func buttonPressed() {
-        let geschlecht = geschlechtField.text ?? ""
-        let groesse = Int(groesseField.text!) ?? 0
-        let gewicht = Int(gewichtField.text!) ?? 0
-        let alter = alterField.text ?? ""
+        _ = geschlechtField.text ?? ""
+        _ = Int(groesseField.text!) ?? 0
+        _ = Int(gewichtField.text!) ?? 0
+        _ = alterField.text ?? ""
         
         let user = User().self
         performSegue(withIdentifier: "persdatenToPersSpeicherViewControllerSegue", sender: user)
